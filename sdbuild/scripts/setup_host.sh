@@ -53,9 +53,9 @@ fi
 mkdir tools
 cd tools/
 
-wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.22.0.tar.bz2
-tar -xf crosstool-ng-1.22.0.tar.bz2
-cd crosstool-ng/
+wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2
+tar -xf crosstool-ng-1.23.0.tar.bz2
+cd crosstool-ng-1.23.0/
 ./configure --prefix=/opt/crosstool-ng
 make
 sudo make install
