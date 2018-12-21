@@ -24,7 +24,7 @@ lib32z1
 lib32ncurses5
 libbz2-1.0
 lib32stdc++6
-libgnutls28-dev
+libgnutls-dev
 libssl-dev
 kpartx
 zerofree

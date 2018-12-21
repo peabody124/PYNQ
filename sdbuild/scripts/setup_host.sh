@@ -32,7 +32,7 @@ git
 lib32z1
 lib32ncurses5
 lib32stdc++6
-libgnutls28-dev
+libgnutls-dev
 libssl-dev
 kpartx
 dosfstools
@@ -40,7 +40,6 @@ nfs-common
 zerofree
 u-boot-tools
 rpm2cpio
-qemu
 EOT
 set -e
 
@@ -61,6 +60,20 @@ cd crosstool-ng-1.23.0/
 make
 sudo make install
 cd ..
+
+wget http://wiki.qemu-project.org/download/qemu-2.8.0.tar.bz2
+tar -xf qemu-2.8.0.tar.bz2
+cd qemu-2.8.0
+patch -p 1 < $script_dir/qemu.patch
+./configure --target-list=arm-linux-user,aarch64-linux-user --prefix=/opt/qemu --static
+make
+sudo make install
+# Create the symlink that ubuntu expects
+cd /opt/qemu/bin
+sudo rm -rf qemu-arm-static qemu-aarch64-static
+sudo ln -s qemu-arm qemu-arm-static
+sudo ln -s qemu-aarch64 qemu-aarch64-static
+cd ~
 
 # Create gmake symlink to keep SDK happy
 cd /usr/bin
