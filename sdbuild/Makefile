@@ -3,7 +3,7 @@ BOARDS ?= $(basename $(notdir $(wildcard $(BOARDDIR)/*/*.spec)))
 UBUNTU_RELEASE := bionic
 VERSION := 2.3
 
-KERNEL_VERSION = 2018.2
+KERNEL_VERSION = 2018.3
 LINUX_VERSION := 4.14.0-xilinx-v2018.2
 SCRIPT_DIR := $(CURDIR)/scripts
 
@@ -75,7 +75,7 @@ BOARDDIR_$1 := $$(BOARDDIR)/$1
 BITSTREAM_ABS_$1 := $$(patsubst %, $$(BOARDDIR_$1)/%, $$(BITSTREAM_$1))
 BUILD_ROOT_$1 := $$(BUILD_ROOT)/$1
 BOOT_ROOT_$1 := $$(BOOT_ROOT)/$1
-QEMU_$1 := $$(shell which qemu-$$(ARCH_$1)-static)
+QEMU_$1 := $$(shell which qemu-$$(ARCH_$1))
 PACKAGE_ENV_$1 := QEMU_EXE=$$(QEMU_$1) PYNQ_BOARDDIR=$$(BOARDDIR_$1) PYNQ_BOARD=$1 ARCH=$$(ARCH=$1) PACKAGE_PATH=$$(BOARDDIR_$1)/packages
 IMAGE_$1 := $$(IMAGE_ROOT)/$1-$$(VERSION).img
 
@@ -285,7 +285,7 @@ sysroot_$1 : $$(SYSROOT_$1)
 .PRECIOUS: $$(STAGE1_$1) $$(STAGE2_$2) $$(BASE_$1)
 
 qemu_check_$1:
-	$$(QEMU_$1) -version | fgrep 2.8.0
+	$$(QEMU_$1) -version | fgrep 2.11.1
 
 .PHONY: qemu_check_$1
 
