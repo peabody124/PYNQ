@@ -126,7 +126,8 @@ $$(PL_PROJ_$1): $$(BSP_TARGET_$1)
 		-s $$(BSP_BUILD_$1)/$$(BSP_PROJECT_$1).bsp -n petalinux_project
 	echo 'CONFIG_USER_LAYER_0="'$(CURDIR)/boot/meta-pynq'"' >> $$(PL_CONFIG_$1)
 	echo 'CONFIG_SUBSYSTEM_ROOTFS_SD=y' >> $$(PL_CONFIG_$1)
-	echo 'CONFIG_SUBSYSTEM_ETHERNET_MANUAL_SELECT=y' >> $$(PL_CONFIG_$1)
+	echo 'CONFIG_SUBSYSTEM_ETHERNET_PS7_ETHERNET_0_SELECT=y' >> $$(PL_CONFIG_$1)
+	echo 'CONFIG_SUBSYSTEM_ETHERNET_PS7_ETHERNET_0_USE_DHCP=y' >> $$(PL_CONFIG_$1)
 	petalinux-config --oldconfig -p $$(PL_PROJ_$1)
 
 $$(BOOT_ROOT_$1)/BOOT.BIN : $$(BOOT_DEPENDS_$1) $$(BOOT_BITSTREAM_$1) | $$(BOOT_ROOT_$1)
